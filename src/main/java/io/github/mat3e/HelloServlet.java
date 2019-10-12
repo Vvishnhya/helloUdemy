@@ -14,25 +14,29 @@ import java.util.Optional;
 @WebServlet(name = "Hello", urlPatterns = {"/api/*"})
 public class HelloServlet extends HttpServlet {
     private static final String NAME_PARAM = "name";
-
     private final Logger logger = LoggerFactory.getLogger(HelloServlet.class);
+
+    private HelloService service;
+
+    /**
+     * Servlet container needs it after service added
+     */
+    @SuppressWarnings("unused")
+    public HelloServlet(){
+        this(new HelloService());
+    }
+
+    HelloServlet(HelloService service){
+        this.service = service;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("Got request with parmaters " + req.getParameter("name"));
+        resp.getWriter().write(service.prepareGreeting(req.getParameter(NAME_PARAM)));
+    }
 
 
-//        if(req.getParameter("name")!=null){
-//            resp.getWriter().write("Hello " + req.getParameter("name"));
-//        } else {
-//            resp.getWriter().write("Hello World");
-//        }
-//    }
-
-//        zamiast ifologii Optional wow
-        var name = Optional.ofNullable(req.getParameter(NAME_PARAM)).orElse("world");
-        resp.getWriter().write("hello " + name +"!");
-        }
 
 
 }
