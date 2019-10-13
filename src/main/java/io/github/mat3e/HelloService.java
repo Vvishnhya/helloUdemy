@@ -26,14 +26,15 @@ class HelloService {
         try{
             langId = Optional.ofNullable(lang).map(Long::valueOf).orElse(FALLBACK_LANG.getId());
         }catch (NumberFormatException e){
-            logger.warn("Non-numeric language id  used" + lang);
+            logger.warn("Non-numeric language id  used " + lang);
             langId = FALLBACK_LANG.getId();
         }
-
-        var welcomeMsg = repository.findById(langId).orElse(FALLBACK_LANG).getWelcomeMsg();
+        var welcomeMsg = repository.findById(langId).orElse(FALLBACK_LANG).getWelcomeMsg();;
         var nameToWelcome = Optional.ofNullable(name).orElse(FALLBACK_NAME);
         return welcomeMsg + " " +  nameToWelcome + "!";
     }
+
+
 
 
 }

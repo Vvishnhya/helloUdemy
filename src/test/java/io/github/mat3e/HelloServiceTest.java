@@ -11,7 +11,7 @@ public class HelloServiceTest {
     private final static String FALLBACK_Id_WELCOME = "Hola";
 
     @Test
-    public void test_preparedGreeting_nullName_returnsGreetingWithFallbackName() throws Exception {
+    public void test_preparedGreeting_nullName_returnsGreetingWith_FALLBACK_NAME() throws Exception {
 
         // given
         var mockRepository = alwaysReturningHelloRepository();
@@ -58,6 +58,28 @@ public class HelloServiceTest {
 
         //then
         assertEquals(FALLBACK_Id_WELCOME + " " + HelloService.FALLBACK_NAME + "!", result);
+    }
+
+    @Test
+    public void test_preparedGreeting_nonExistingLang_returnsGreetingWithFALLBACK_Id_LANG() throws Exception {
+        // given
+        var mockRepository = FALLBACK_LANG_null_IdRepository();
+        var SUT = new HelloService(mockRepository);
+
+        //  when
+        var result = SUT.prepareGreeting(null, "-1");
+
+        //then
+        assertEquals(HelloService.FALLBACK_LANG.getWelcomeMsg() + " " + HelloService.FALLBACK_NAME + "!", result);
+    }
+
+    private LangRepository FALLBACK_LANG_null_IdRepository() {
+        return new LangRepository() {
+            @Override
+            Optional<Lang> findById(Long id) {
+                return Optional.empty();
+            }
+        };
     }
 
     private LangRepository FALLBACK_LANG_IdRepository() {
