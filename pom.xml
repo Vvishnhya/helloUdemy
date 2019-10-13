@@ -16,6 +16,7 @@
         <slf4j.version>1.7.25</slf4j.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <jetty.version>9.4.19.v20190610</jetty.version>
+        <h2.version>1.4.199</h2.version>
     </properties>
 
     <dependencies>
@@ -37,8 +38,8 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        <!-- http -->
         <dependency>
-            <!-- http -->
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>${javax.servlet-api.version}</version>
@@ -52,6 +53,12 @@
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-annotations</artifactId>
             <version>${jetty.version}</version>
+        </dependency>
+        <!-- db -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
         </dependency>
     </dependencies>
 

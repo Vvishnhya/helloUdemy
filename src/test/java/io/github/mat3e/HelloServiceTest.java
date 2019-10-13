@@ -40,7 +40,7 @@ public class HelloServiceTest {
         var SUT = new HelloService(mockRepository);
 
         //  when
-        var result = SUT.prepareGreeting(null, "abc");
+        var result = SUT.prepareGreeting(null, null);
 
         //then
         assertEquals(FALLBACK_Id_WELCOME + " " + HelloService.FALLBACK_NAME + "!", result);
@@ -63,7 +63,7 @@ public class HelloServiceTest {
     @Test
     public void test_preparedGreeting_nonExistingLang_returnsGreetingWithFALLBACK_Id_LANG() throws Exception {
         // given
-        var mockRepository = FALLBACK_LANG_null_IdRepository();
+        var mockRepository = FALLBACK_LANG_non_exisiting_IdRepository();
         var SUT = new HelloService(mockRepository);
 
         //  when
@@ -73,7 +73,7 @@ public class HelloServiceTest {
         assertEquals(HelloService.FALLBACK_LANG.getWelcomeMsg() + " " + HelloService.FALLBACK_NAME + "!", result);
     }
 
-    private LangRepository FALLBACK_LANG_null_IdRepository() {
+    private LangRepository FALLBACK_LANG_non_exisiting_IdRepository() {
         return new LangRepository() {
             @Override
             Optional<Lang> findById(Long id) {
