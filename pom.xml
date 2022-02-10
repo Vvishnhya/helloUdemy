@@ -18,7 +18,7 @@
         <jetty.version>9.4.19.v20190610</jetty.version>
         <h2.version>1.4.199</h2.version>
         <flywaydb.version>6.0.6</flywaydb.version>
-        <hibernate.version>5.4.6.Final</hibernate.version>
+        <hibernate.version>5.4.24.Final</hibernate.version>
     </properties>
 
     <dependencies>
